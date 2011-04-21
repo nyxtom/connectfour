@@ -1,0 +1,81 @@
+@import url('reset.css');
+
+/* --- Standard Typography --- */
+body {
+  font-size: 87.5%;
+  line-height: 1.429;
+  text-align: left;
+  font-family: "Trebuchet MS", Trebuchet, "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, Helvetica, sans-serif;
+}
+
+/* Headings */
+h1 {
+  font-size: 3.571em;
+  font-weight: 800;
+}
+
+h2 {
+  font-size: 1.571em;
+}
+
+h3 {
+  font-size: 1.429em;
+}
+
+h4 {
+  font-size: 1.286em;
+}
+
+h5 {
+  font-size: 1.143em;
+}
+
+h6 {
+  font-size: 1em;
+}
+
+h2, h3, h4, h5, h6 {
+  font-weight: 400;
+  line-height: 1.1;
+  margin-bottom: 0.8em;
+}
+
+/* Anchors */
+a {
+  outline: 0;
+  color: #4372d1;
+}
+a img {
+  border: 0px;
+  text-decoration: none;
+}
+a:link, a:visited {
+  padding: 0 1px;
+  text-decoration: none;
+  text-shadow: 1px 1px 1px #cccccc;
+}
+a:hover, a:active {
+  text-decoration: none;
+}
+
+/* Paragraphs */
+p {
+  margin-bottom: 1.143em;
+}
+
+* p:last-child {
+  margin-bottom: 0;
+}
+
+strong, b {
+  font-weight: bold;
+}
+
+em, i, blockquote {
+  font-style: italic;
+}
+
+/* --- HTML 5 Fix --- */
+section, article, header, footer, nav, aside, hgroup {
+  display: block;
+}

@@ -1,0 +1,29 @@
+#gamebox {
+  width: 820px;
+  margin: 0 auto;
+}
+
+#gamebox ul {
+  width: 100%;
+  height: 100%;
+  list-style: none;
+  padding: 20px 20px;
+}
+
+#gamebox ul li {
+  border-radius: 390px;
+  -moz-border-radius: 390px;
+  -webkit-border-radius: 390px;
+  box-shadow: inset 1px 1px 5px #333333;
+  -moz-box-shadow: inset 1px 1px 5px #333333;
+  -webkit-box-shadow: inset 1px 1px 5px #333333;
+  border: 3px solid rgba(100, 100, 100, 0.4);
+  margin: 2px;
+  width: 100px;
+  height: 100px;
+  float: left;
+}
+
+#gamebox ul li.empty {
+  background-color: white;
+}

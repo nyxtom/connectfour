@@ -1,0 +1,31 @@
+@mixin rounded($radius: 10px)
+  border-radius: $radius
+  -moz-border-radius: $radius
+  -webkit-border-radius: $radius
+
+@mixin inset-shadow($hlen, $vlen, $blur, $color)
+  box-shadow: inset $hlen $vlen $blur $color
+  -moz-box-shadow: inset $hlen $vlen $blur $color
+  -webkit-box-shadow: inset $hlen $vlen $blur $color
+
+#gamebox
+  width: 820px
+  margin: 0 auto
+
+#gamebox ul
+  width: 100%
+  height: 100%
+  list-style: none
+  padding: 20px 20px
+
+#gamebox ul li
+  @include rounded(390px)
+  @include inset-shadow(1px, 1px, 5px, #333)
+  border: 3px solid rgba(100, 100, 100, 0.4)
+  margin: 2px
+  width: 100px
+  height: 100px
+  float: left
+
+#gamebox ul li.empty
+  background-color: #fff

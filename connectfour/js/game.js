@@ -79,11 +79,6 @@ var game = {
 
     check_winner: function() {
         /// Determine the winner using the different win patterns
-        var rows = this.check(1, 0);
-        var cols = this.check(0, 1);
-        var r_diag = this.check(1, 1);
-        var l_diag = this.check(1, -1);
-
         if (this.check(0, 1) || this.check(1, 1) || 
             this.check(1, 0) || this.check(1, -1))
             this.winning = this.turn;

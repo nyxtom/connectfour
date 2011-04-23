@@ -3,6 +3,7 @@ var board = {
         this.container = $(layout.selector);
         this.dimensions = this.dimensions();
         layout.setup(this.dimensions.cols, this.dimensions.rows);
+        this.get_players();
     },
 
     dimensions: function() {
@@ -14,12 +15,15 @@ var board = {
     },
 
     new_game: function() {
-    },
-
-    reset: function() {
+        game.reset();
     },
 
     get_players: function() {
+        this.show_overlay();
+    },
+
+    show_overlay: function() {
+        $(".overlay").show();
     },
 };
 

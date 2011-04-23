@@ -18,6 +18,12 @@
   -moz-transition: $prop $time $method
   -o-transition: $prop $time $method
 
+@mixin set_opacity($opacity: 50)
+  filter: alpha(opacity=$opacity)
+  -khtml-opacity: $opacity / 100
+  -moz-opacity: $opacity / 100
+  opacity: $opacity / 100
+
 $init_game-color: rgba(40,40,40,0.5)
 $modal-text-color: #fff
 $overlay-color: rgba(0, 0, 0, 0.7)
@@ -28,7 +34,7 @@ body
 
 @font-face
   font-family: Chunk
-  src: url('../Chunkfive.ttf') format('truetype')
+  src: url('../assets/Chunkfive.ttf') format('truetype')
 
 #header, #container
   margin: 0 auto
@@ -74,10 +80,14 @@ h1
   margin-top: -150px
   width: 500px
   height: 300px
-  background: darken($overlay-color, 20%)
-  @include shadow(0, 0, 20px, #111)
+  background: darken($overlay-color, 20%) url('../assets/universe.jpeg') no-repeat -100px -100px
+  @include shadow(0, 0, 40px, #000)
   @include rounded
   color: $modal-text-color
+  -webkit-animation-iteration-count: infinite
+  -webkit-animation-timing-function: linear
+  -webkit-animation-name: glow
+  -webkit-animation-duration: 2s
 
   a
     color: $modal-text-color
@@ -86,3 +96,35 @@ h1
     float: right
     margin-right: 20px
     font-size: 2em
+
+  form
+    padding: 20px
+    text-align: center
+  h3
+    font: 60px/50px "Chunk", Helvetica, Sans-Serif
+    font-weight: normal
+    text-shadow: darken($modal-text-color, 50%) 5px 5px 5px
+    padding-bottom: 0px
+    margin-bottom: 20px
+  fieldset, input[type=button]
+    display: block
+    padding: 10px
+  label
+    font-size: 1.4em
+  input[type=text]
+    padding: 5px 5px
+    width: 300px
+  input[type=button]
+    width: 100px
+    display: block
+    float: right
+    margin-top: 20px
+    margin-right: 160px
+
+@-webkit-keyframes glow
+  0%
+    @include shadow(0, 0, 40px, #000)
+  50%
+    @include shadow(0, 0, 80px, #000)
+  100%
+    @include shadow(0, 0, 40px, #000)

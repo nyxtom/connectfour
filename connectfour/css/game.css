@@ -26,8 +26,21 @@
   margin: 2px;
   width: 90px;
   height: 90px;
-  display: block; }
+  display: block;
+  -webkit-transition: all 0.4s ease-in-out;
+  -moz-transition: all 0.4s ease-in-out;
+  -o-transition: all 0.4s ease-in-out; }
   #gamebox ul.board li span.red {
-    background: rgba(200, 10, 10, 0.3); }
+    background: rgba(200, 10, 10, 0.3);
+    box-shadow: inset 0px 0px 12px #444444;
+    -moz-box-shadow: inset 0px 0px 12px #444444;
+    -webkit-box-shadow: inset 0px 0px 12px #444444; }
+  #gamebox ul.board li span.red_hover {
+    background: rgba(200, 10, 10, 0.1); }
   #gamebox ul.board li span.black {
-    background: rgba(20, 20, 20, 0.4); }
+    background: rgba(20, 20, 20, 0.4);
+    box-shadow: inset 0px 0px 12px #444444;
+    -moz-box-shadow: inset 0px 0px 12px #444444;
+    -webkit-box-shadow: inset 0px 0px 12px #444444; }
+  #gamebox ul.board li span.black_hover {
+    background: rgba(20, 20, 20, 0.1); }

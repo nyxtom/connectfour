@@ -105,6 +105,18 @@ describe("while playing a new game", function() {
         expect(game.winning).toEqual('red');
         expect(game.play(0)).toEqual(false);
     });
+
+    it("should return no bottom when the game is over (someone one)", function() {
+        playfor(0, 4);
+        playfor(1, 3);
+        game.play(0);
+        game.play(1); 
+        game.play(0);
+        expect(game.get_bottom(0)).toNotEqual(undefined);
+        expect(game.play(0)).toEqual(true);
+        expect(game.winning).toEqual('red');
+        expect(game.get_bottom(0)).toEqual(undefined);
+    });
 });
 
 function playfor(offset, x) {

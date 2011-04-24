@@ -13,6 +13,9 @@ var game = {
         for(var i=0; i<this.dimensions.rows*this.dimensions.cols; i++) {
             this.board[i] = '';
         }
+        this.winning = '';
+        this.toggle_turn();
+        this.last_play = undefined;
     },
 
     toggle_turn: function() {

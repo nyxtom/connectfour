@@ -117,6 +117,23 @@ describe("while playing a new game", function() {
         expect(game.winning).toEqual('red');
         expect(game.get_bottom(0)).toEqual(undefined);
     });
+
+    it("should reset the winner when the game has been reset", function() {
+        playfor(0, 4);
+        playfor(1, 3);
+        game.play(0);
+        game.play(1); 
+        game.play(0);
+        expect(game.play(0)).toEqual(true);
+        expect(game.winning).toEqual('red');
+        expect(game.get_bottom(0)).toEqual(undefined);
+        expect(game.last_play).toNotEqual(undefined);
+        game.reset();
+        expect(game.winning).toEqual('');
+        expect(game.turn).toEqual('black');
+        expect(game.get_bottom(0)).toNotEqual(undefined);
+        expect(game.last_play).toEqual(undefined);
+    });
 });
 
 function playfor(offset, x) {

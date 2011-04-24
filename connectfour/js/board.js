@@ -7,8 +7,8 @@ var board = {
 
     dimensions: function() {
         /// Simply grabs the initial col/rows of the board
-        var cols = this.container.attr('cols');
-        var rows  = this.container.attr('rows');
+        var cols = parseInt(this.container.attr('cols'));
+        var rows  = parseInt(this.container.attr('rows'));
         var length = cols * rows;
         return {'cols': cols, 'rows': rows, 'length': length};
     },
@@ -38,15 +38,50 @@ var layout = {
             container.append(content);
         }
     },
+    get_index: function(item) {
+        var listItem = $(item);
+        var parent = listItem.parent().children('li');
+        return parent.index(listItem);
+    },
+    get_bottom: function(item) {
+        var index = this.get_index(item);
+        return game.get_bottom(index);
+    }
 };
 
 
 // Start by initializing the board layout
 $(document).ready(function() {
     board.init();
+    game.init(board.dimensions);
 
+    // Handle modal closes
     $("a.close").click(function() {
         $("#modal").fadeOut();
         $(".overlay").fadeOut();
+    });
+
+    // Handle board mouse movements to show where 
+    // a possible placement/move can be made
+    $("ul.board li").hover(function() {
+        var bottom = layout.get_bottom(this);
+        if (bottom != undefined) {
+            $($("ul.board li span")[bottom]).addClass(game.turn + "_hover");
+        }
+    }, function() {
+        var bottom = layout.get_bottom(this);
+        if (bottom != undefined) {
+            $($("ul.board li span")[bottom]).removeClass(game.turn + "_hover");
+        }
+    });
+
+    // Handle actual move placement
+    $("ul.board li").click(function() {
+        var index = layout.get_index(this);
+        var bottom = game.get_bottom(index);
+        if (bottom != undefined) {
+            $($("ul.board li span")[bottom]).addClass(game.turn);
+            game.play(index);
+        }
     });
 });

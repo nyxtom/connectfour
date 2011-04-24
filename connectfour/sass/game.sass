@@ -9,23 +9,32 @@
   -webkit-box-shadow: inset $hlen $vlen $blur $color
 
 #gamebox
-  width: 820px
+  width: 813px
   margin: 0 auto
+  position: relative
+  z-index: 888
 
-#gamebox ul
+#gamebox ul.board
   width: 100%
-  height: 100%
+  height: 100px
   list-style: none
-  padding: 20px 20px
 
-#gamebox ul li
-  @include rounded(390px)
-  @include inset-shadow(1px, 1px, 5px, #333)
-  border: 3px solid rgba(100, 100, 100, 0.4)
-  margin: 2px
+#gamebox ul.board li
   width: 100px
   height: 100px
+  padding: 8px
   float: left
 
-#gamebox ul li
-  background-color: #fff
+#gamebox ul.board li span
+  @include rounded(390px)
+  @include inset-shadow(0px, 0px, 10px, #222)
+  background-color: rgba(100, 100, 100, 0.8)
+  margin: 2px
+  width: 90px
+  height: 90px
+  display: block
+
+  &.red
+    background: rgba(200, 10, 10, 0.3)
+  &.black
+    background: rgba(20, 20, 20, 0.4)

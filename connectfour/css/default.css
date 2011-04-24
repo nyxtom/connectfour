@@ -1,5 +1,5 @@
 body {
-  background: #eeeeee;
+  background: #666666;
   overflow: hidden; }
 
 @font-face {
@@ -30,21 +30,29 @@ h1 {
   background-color: rgba(91, 91, 91, 0.5);
   border: 10px solid rgba(222, 222, 222, 0.9);
   border-bottom: none;
-  box-shadow: 0px 10px 20px #b0b0b0;
-  -moz-box-shadow: 0px 10px 20px #b0b0b0;
-  -webkit-box-shadow: 0px 10px 20px #b0b0b0; }
+  border-top: none;
+  -webkit-transition: all 0.1s ease-in-out;
+  -moz-transition: all 0.1s ease-in-out;
+  -o-transition: all 0.1s ease-in-out;
+  box-shadow: 0px 0px 10px #b0b0b0;
+  -moz-box-shadow: 0px 0px 10px #b0b0b0;
+  -webkit-box-shadow: 0px 0px 10px #b0b0b0; }
 
 .overlay {
-  background-color: rgba(0, 0, 0, 0.7);
+  background: black;
   width: 100%;
   height: 100%;
   top: 0;
   left: 0;
-  z-index: 999;
+  z-index: 998;
   position: absolute;
-  display: none; }
+  filter: alpha(opacity=70);
+  -khtml-opacity: 0.7;
+  -moz-opacity: 0.7;
+  opacity: 0.7; }
 
-.overlay #modal {
+#modal {
+  z-index: 1000;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -52,60 +60,103 @@ h1 {
   margin-top: -150px;
   width: 500px;
   height: 300px;
-  background: rgba(0, 0, 0, 0.7) url("../assets/universe.jpeg") no-repeat -100px -100px;
-  box-shadow: 0 0 40px black;
-  -moz-box-shadow: 0 0 40px black;
-  -webkit-box-shadow: 0 0 40px black;
+  background: black url("../assets/universe.png") no-repeat -10px -10px;
+  box-shadow: 0 0 20px black;
+  -moz-box-shadow: 0 0 20px black;
+  -webkit-box-shadow: 0 0 20px black;
   border-radius: 10px;
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
-  color: white;
-  -webkit-animation-iteration-count: infinite;
-  -webkit-animation-timing-function: linear;
-  -webkit-animation-name: glow;
-  -webkit-animation-duration: 2s; }
-  .overlay #modal a {
+  color: white; }
+  #modal a {
     color: white; }
-  .overlay #modal a.close {
+  #modal a.close {
     float: right;
     margin-right: 20px;
     font-size: 2em; }
-  .overlay #modal form {
+  #modal form {
     padding: 20px;
     text-align: center; }
-  .overlay #modal h3 {
+  #modal h3 {
     font: 60px/50px "Chunk", Helvetica, Sans-Serif;
     font-weight: normal;
     text-shadow: gray 5px 5px 5px;
     padding-bottom: 0px;
     margin-bottom: 20px; }
-  .overlay #modal fieldset, .overlay #modal input[type=button] {
+  #modal fieldset, #modal input[type=button] {
     display: block;
     padding: 10px; }
-  .overlay #modal label {
+  #modal label {
     font-size: 1.4em; }
-  .overlay #modal input[type=text] {
+  #modal input[type=text] {
     padding: 5px 5px;
     width: 300px; }
-  .overlay #modal input[type=button] {
+  #modal input[type=button] {
     width: 100px;
     display: block;
     float: right;
     margin-top: 20px;
     margin-right: 160px; }
 
-@-webkit-keyframes glow {
-  0% {
-    box-shadow: 0 0 40px black;
-    -moz-box-shadow: 0 0 40px black;
-    -webkit-box-shadow: 0 0 40px black; }
+.glowy {
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+  -webkit-animation-duration: 4s; }
 
-  50% {
+.red {
+  -webkit-animation-name: red_glow; }
+
+.black {
+  -webkit-animation-name: black_glow; }
+
+@-webkit-keyframes red_glow {
+  0% {
+    box-shadow: 0 0 50px #ff2323;
+    -moz-box-shadow: 0 0 50px #ff2323;
+    -webkit-box-shadow: 0 0 50px #ff2323; }
+
+  20% {
+    box-shadow: 0 0 50px #890000;
+    -moz-box-shadow: 0 0 50px #890000;
+    -webkit-box-shadow: 0 0 50px #890000; }
+
+  60% {
+    box-shadow: 0 0 50px black;
+    -moz-box-shadow: 0 0 50px black;
+    -webkit-box-shadow: 0 0 50px black; }
+
+  80% {
+    box-shadow: 0 0 50px #890000;
+    -moz-box-shadow: 0 0 50px #890000;
+    -webkit-box-shadow: 0 0 50px #890000; }
+
+  100% {
+    box-shadow: 0 0 50px #ff2323;
+    -moz-box-shadow: 0 0 50px #ff2323;
+    -webkit-box-shadow: 0 0 50px #ff2323; } }
+
+@-webkit-keyframes black_glow {
+  0% {
+    box-shadow: 0 0 50px #090909;
+    -moz-box-shadow: 0 0 50px #090909;
+    -webkit-box-shadow: 0 0 50px #090909; }
+
+  20% {
+    box-shadow: 0 0 80px black;
+    -moz-box-shadow: 0 0 80px black;
+    -webkit-box-shadow: 0 0 80px black; }
+
+  60% {
+    box-shadow: 0 0 100px black;
+    -moz-box-shadow: 0 0 100px black;
+    -webkit-box-shadow: 0 0 100px black; }
+
+  80% {
     box-shadow: 0 0 80px black;
     -moz-box-shadow: 0 0 80px black;
     -webkit-box-shadow: 0 0 80px black; }
 
   100% {
-    box-shadow: 0 0 40px black;
-    -moz-box-shadow: 0 0 40px black;
-    -webkit-box-shadow: 0 0 40px black; } }
+    box-shadow: 0 0 50px #090909;
+    -moz-box-shadow: 0 0 50px #090909;
+    -webkit-box-shadow: 0 0 50px #090909; } }

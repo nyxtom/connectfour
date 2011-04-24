@@ -12,3 +12,7 @@ function repeat(pattern, count) {
     };
     return result;
 }
+
+function select_by_name(name) {
+    $("input[name={0}]".format(name)).value();
+}

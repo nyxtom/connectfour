@@ -1,25 +1,33 @@
 #gamebox {
-  width: 820px;
-  margin: 0 auto; }
+  width: 813px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 888; }
 
-#gamebox ul {
+#gamebox ul.board {
   width: 100%;
-  height: 100%;
-  list-style: none;
-  padding: 20px 20px; }
+  height: 100px;
+  list-style: none; }
 
-#gamebox ul li {
+#gamebox ul.board li {
+  width: 100px;
+  height: 100px;
+  padding: 8px;
+  float: left; }
+
+#gamebox ul.board li span {
   border-radius: 390px;
   -moz-border-radius: 390px;
   -webkit-border-radius: 390px;
-  box-shadow: inset 1px 1px 5px #333333;
-  -moz-box-shadow: inset 1px 1px 5px #333333;
-  -webkit-box-shadow: inset 1px 1px 5px #333333;
-  border: 3px solid rgba(100, 100, 100, 0.4);
+  box-shadow: inset 0px 0px 10px #222222;
+  -moz-box-shadow: inset 0px 0px 10px #222222;
+  -webkit-box-shadow: inset 0px 0px 10px #222222;
+  background-color: rgba(100, 100, 100, 0.8);
   margin: 2px;
-  width: 100px;
-  height: 100px;
-  float: left; }
-
-#gamebox ul li {
-  background-color: white; }
+  width: 90px;
+  height: 90px;
+  display: block; }
+  #gamebox ul.board li span.red {
+    background: rgba(200, 10, 10, 0.3); }
+  #gamebox ul.board li span.black {
+    background: rgba(20, 20, 20, 0.4); }

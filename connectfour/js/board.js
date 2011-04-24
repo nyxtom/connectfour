@@ -46,7 +46,20 @@ var layout = {
     get_bottom: function(item) {
         var index = this.get_index(item);
         return game.get_bottom(index);
-    }
+    },
+    prompt: function() {
+        var text = 'New game?';
+        if (game.winning != '') {
+            text = game.winning + ' won! Play again?';
+        }
+        if (confirm(text)) {
+            game.reset();
+            this.clear();
+        }
+    },
+    clear: function() {
+        $("ul.board li span").removeClass();
+    },
 };
 
 
@@ -54,6 +67,7 @@ var layout = {
 $(document).ready(function() {
     board.init();
     game.init(board.dimensions);
+    layout.prompt();
 
     // Handle modal closes
     $("a.close").click(function() {
@@ -82,6 +96,9 @@ $(document).ready(function() {
         if (bottom != undefined) {
             $($("ul.board li span")[bottom]).addClass(game.turn);
             game.play(index);
+            if (game.winning != '') {
+                layout.prompt();
+            }
         }
     });
 });

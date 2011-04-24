@@ -94,7 +94,7 @@ var game = {
         /// Returns the index where the next available slot is 
         /// empty for the given column parameter.
         var bottom = undefined;
-        if (col >= 0 && col < this.dimensions.cols) {
+        if (this.winning == '' && col >= 0 && col < this.dimensions.cols) {
             var last_check = (this.board.length - (this.dimensions.cols - (col + 1)));
             for (var i=col; i <= last_check; i+=this.dimensions.cols) {
                 if (this.board[i] == '')

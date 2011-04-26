@@ -38,17 +38,6 @@ var game = {
         var current = this.last_play;
         var check = this.board[current];
         while (!done) {
-            // Use the velocity to increase first in the initial direction
-                // 1. check if the current column x is the last column
-            if ((xd > 0 && (current % (this.dimensions.cols - 1) == 0)) || 
-                // 2. check if the current column x is the first column
-                (xd < 0 && (current % this.dimensions.cols == 0)) ||
-                // 3. check if the current row is the last row
-                (yd > 0 && ((current + (yd * this.dimensions.cols)) > this.board.length)) ||
-                // 4. check if the current row is the first row
-                (yd < 0 && ((current + (yd * this.dimensions.cols)) < 0))) {
-                reverse = true;
-            }
             // Does the check meet the requirements and is it in bounds
             if (this.board[current] == check) {
                 consecutive += 1;
@@ -57,6 +46,18 @@ var game = {
                 reverse = false;
             }
             else {
+                reverse = true;
+            }
+
+            // Use the velocity to increase first in the initial direction
+                // 1. check if the current column x is the last column
+            if ((xd > 0 && ((current + 1) % (this.dimensions.cols) == 0)) || 
+                // 2. check if the current column x is the first column
+                (xd < 0 && (current % this.dimensions.cols == 0)) ||
+                // 3. check if the current row is the last row
+                (yd > 0 && ((current + (yd * this.dimensions.cols)) > this.board.length)) ||
+                // 4. check if the current row is the first row
+                (yd < 0 && ((current + (yd * this.dimensions.cols)) < 0))) {
                 reverse = true;
             }
 

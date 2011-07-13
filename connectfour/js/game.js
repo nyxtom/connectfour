@@ -7,6 +7,10 @@ var game = {
         this.last_play = undefined;
         this.turn = 'black';
         this.winning = '';
+        
+        this.pieceDropSound = document.createElement('audio');
+        this.pieceDropSound.setAttribute('src', 'assets/slide_drop_sound.mp3');
+        this.pieceDropSound.load();
     },
 
     reset: function() {
@@ -113,6 +117,8 @@ var game = {
         /// Plays on the given column by placing the item to the very 
         /// bottom on the stack on the board (last empty row in column)
 
+        this.pieceDropSound.play();
+        
         if (this.winning != '')
             return false;
 

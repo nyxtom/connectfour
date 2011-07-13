@@ -49,16 +49,24 @@ var layout = {
     },
     prompt: function() {
         var layout = this;
-        var text = 'New game?';
-        if (game.winning != '') {
-            text = game.winning + ' won! Play again?';
+
+        if(game.winning == 'black') {
+            var winner_name = board.player_one;
         }
-        $("<div title='New game?'><p>"+text+"</p></div>").dialog({ buttons: [
-            {
-                text: "Ok",
-                click: function() { $(this).dialog("close"); game.reset(); layout.clear(); }
-            }
-        ] });
+        else {
+            var winner_name = board.player_two;
+        }
+        if (game.winning != '') {
+            $("<div title='New game?'><p>"+winner_name+" won! Play again?</p></div>").dialog({ buttons: [
+                {
+                    text: "Ok",
+                    click: function() { $(this).dialog("close"); game.reset(); layout.clear(); }
+                }
+            ] });
+        }
+        else {
+            $("#modal").fadeIn();
+        }
     },
     clear: function() {
         $("ul.board li span").removeClass();
@@ -76,6 +84,11 @@ $(document).ready(function() {
     $("a.close").click(function() {
         $("#modal").fadeOut();
         $(".overlay").fadeOut();
+    });
+    
+    $('#modal input[type="button"]').click(function(){
+        board.get_players();
+        $("a.close").click();
     });
 
     // Handle board mouse movements to show where 

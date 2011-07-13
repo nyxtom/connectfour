@@ -7,6 +7,7 @@ var game = {
         this.last_play = undefined;
         this.turn = 'black';
         this.winning = '';
+        this.winning_pieces = [];
         
         this.pieceDropSound = document.createElement('audio');
         this.pieceDropSound.setAttribute('src', 'assets/slide_drop_sound.wav');
@@ -44,6 +45,7 @@ var game = {
         while (!done) {
             // Does the check meet the requirements and is it in bounds
             if (this.board[current] == check) {
+                this.winning_pieces[consecutive] = current;
                 consecutive += 1;
                 if (consecutive == 4)
                     return true;

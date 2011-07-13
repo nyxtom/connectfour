@@ -48,14 +48,17 @@ var layout = {
         return game.get_bottom(index);
     },
     prompt: function() {
+        var layout = this;
         var text = 'New game?';
         if (game.winning != '') {
             text = game.winning + ' won! Play again?';
         }
-        if (confirm(text)) {
-            game.reset();
-            this.clear();
-        }
+        $("<div title='New game?'><p>"+text+"</p></div>").dialog({ buttons: [
+            {
+                text: "Ok",
+                click: function() { $(this).dialog("close"); game.reset(); layout.clear(); }
+            }
+        ] });
     },
     clear: function() {
         $("ul.board li span").removeClass();
@@ -94,9 +97,15 @@ $(document).ready(function() {
         var index = layout.get_index(this);
         var bottom = game.get_bottom(index);
         if (bottom != undefined) {
-            $($("ul.board li span")[bottom]).addClass(game.turn);
+            var piecePlayed = $("ul.board li span")[bottom];
+            $(piecePlayed).addClass(game.turn);// game.turn stores the last piece's color
             game.play(index);
             if (game.winning != '') {
+                var $winning_pieces = $("ul.board li span").map(function(index,element){
+                    if($.inArray(index, game.winning_pieces) > -1)
+                        return element;
+                });
+                $winning_pieces.addClass(game.winning + '_winner');
                 layout.prompt();
             }
         }

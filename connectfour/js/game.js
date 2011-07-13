@@ -9,7 +9,7 @@ var game = {
         this.winning = '';
         
         this.pieceDropSound = document.createElement('audio');
-        this.pieceDropSound.setAttribute('src', 'assets/slide_drop_sound.mp3');
+        this.pieceDropSound.setAttribute('src', 'assets/slide_drop_sound.wav');
         this.pieceDropSound.load();
     },
 

@@ -36,15 +36,15 @@
     -moz-box-shadow: inset 0px 0px 12px #444444;
     -webkit-box-shadow: inset 0px 0px 12px #444444; }
   #gamebox ul.board li span.red_hover {
-    background: rgba(200, 10, 10, 0.1); }
+    background: rgba(200, 10, 10, 0.7); }
   #gamebox ul.board li span.red_winner {
-    background: rgba(200, 10, 10, 0.8); }
+    background: rgba(200, 10, 10, 0.95); }
   #gamebox ul.board li span.black {
     background: rgba(20, 20, 20, 0.4);
     box-shadow: inset 0px 0px 12px #444444;
     -moz-box-shadow: inset 0px 0px 12px #444444;
     -webkit-box-shadow: inset 0px 0px 12px #444444; }
   #gamebox ul.board li span.black_hover {
-    background: rgba(20, 20, 20, 0.1); }
+    background: rgba(20, 20, 20, 0.7); }
   #gamebox ul.board li span.black_winner {
-    background: rgba(20, 20, 20, 0.8); }
+    background: rgba(20, 20, 20, 0.95); }

@@ -12,6 +12,12 @@ var game = {
         this.pieceDropSound = document.createElement('audio');
         this.pieceDropSound.setAttribute('src', 'assets/slide_drop_sound.wav');
         this.pieceDropSound.load();
+        
+        var ai_options = {
+            game_dimensions : this.dimensions,
+            difficulty : 'easy'
+        };
+        ai.init(ai_options);
     },
 
     reset: function() {
@@ -28,6 +34,12 @@ var game = {
             this.turn = 'red';
         else
             this.turn = 'black';
+        
+        //alert(board.player_two + ' ' + this.turn);
+        if (board.player_two == 'Computer' && this.turn == 'red') {
+            var move_loc = ai.play();
+            $($("ul.board li")[move_loc]).click();
+        }
     },
 
     check: function(xd, yd) {

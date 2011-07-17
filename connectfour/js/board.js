@@ -21,6 +21,9 @@ var board = {
         var players = $("input[name=playerone], input[name=playertwo]");
         this.player_one = players[0].value;
         this.player_two = players[1].value;
+        if(this.player_two == ''){
+            this.player_two = 'Computer';
+        }
     },
 };
 

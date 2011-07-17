@@ -37,8 +37,12 @@ var game = {
         
         
         if (board.player_two == 'Computer' && this.turn == 'red') {
-            var move_loc = ai.play();
-            $($("ul.board li")[move_loc]).click();
+            board.set_disabled(true);
+            window.setTimeout(function(){
+                board.set_disabled(false);
+                var move_loc = ai.play();
+                $($("ul.board li")[move_loc]).click();                
+            }, 1200);
         }
     },
 

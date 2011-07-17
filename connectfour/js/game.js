@@ -35,7 +35,7 @@ var game = {
         else
             this.turn = 'black';
         
-        //alert(board.player_two + ' ' + this.turn);
+        
         if (board.player_two == 'Computer' && this.turn == 'red') {
             var move_loc = ai.play();
             $($("ul.board li")[move_loc]).click();

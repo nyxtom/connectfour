@@ -2,6 +2,7 @@ var board = {
     init: function() {
         this.container = $(layout.selector);
         this.dimensions = this.dimensions();
+        this.disabled = true;
         layout.setup(this.dimensions.cols, this.dimensions.rows);
     },
 
@@ -21,7 +22,19 @@ var board = {
         var players = $("input[name=playerone], input[name=playertwo]");
         this.player_one = players[0].value;
         this.player_two = players[1].value;
+        this.set_disabled(false);
+        if(this.player_two == ''){
+            this.player_two = 'Computer';
+        }
     },
+    
+    set_disabled: function (true_or_false) {
+        this.disabled = true_or_false;
+    },
+    
+    is_disabled: function() {
+        return this.disabled;
+    }
 };
 
 
@@ -48,13 +61,24 @@ var layout = {
         return game.get_bottom(index);
     },
     prompt: function() {
-        var text = 'New game?';
-        if (game.winning != '') {
-            text = game.winning + ' won! Play again?';
+        var layout = this;
+
+        if(game.winning == 'black') {
+            var winner_name = board.player_one;
         }
-        if (confirm(text)) {
-            game.reset();
-            this.clear();
+        else {
+            var winner_name = board.player_two;
+        }
+        if (game.winning != '') {
+            $("<div title='New game?'><p>"+winner_name+" won! Play again?</p></div>").dialog({ buttons: [
+                {
+                    text: "Ok",
+                    click: function() { $(this).dialog("close"); game.reset(); layout.clear(); }
+                }
+            ] });
+        }
+        else {
+            $("#modal").fadeIn();
         }
     },
     clear: function() {
@@ -74,15 +98,24 @@ $(document).ready(function() {
         $("#modal").fadeOut();
         $(".overlay").fadeOut();
     });
+    
+    $('#modal input[type="button"]').click(function(){
+        board.get_players();
+        $("a.close").click();
+    });
 
     // Handle board mouse movements to show where 
     // a possible placement/move can be made
     $("ul.board li").hover(function() {
+        if(board.is_disabled())
+            return;
         var bottom = layout.get_bottom(this);
         if (bottom != undefined) {
             $($("ul.board li span")[bottom]).addClass(game.turn + "_hover");
         }
     }, function() {
+        if(board.is_disabled())
+            return;
         var bottom = layout.get_bottom(this);
         if (bottom != undefined) {
             $($("ul.board li span")[bottom]).removeClass(game.turn + "_hover");
@@ -91,12 +124,21 @@ $(document).ready(function() {
 
     // Handle actual move placement
     $("ul.board li").click(function() {
+        if(board.is_disabled())
+            return;
         var index = layout.get_index(this);
         var bottom = game.get_bottom(index);
         if (bottom != undefined) {
-            $($("ul.board li span")[bottom]).addClass(game.turn);
+            var piecePlayed = $("ul.board li span")[bottom];
+            $(piecePlayed).removeClass(game.turn + '_hover');
+            $(piecePlayed).addClass(game.turn);// game.turn stores the last piece's color
             game.play(index);
             if (game.winning != '') {
+                var $winning_pieces = $("ul.board li span").map(function(index,element){
+                    if($.inArray(index, game.winning_pieces) > -1)
+                        return element;
+                });
+                $winning_pieces.addClass(game.winning + '_winner');
                 layout.prompt();
             }
         }

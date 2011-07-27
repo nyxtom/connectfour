@@ -7,15 +7,26 @@ var game = {
         this.last_play = undefined;
         this.turn = 'black';
         this.winning = '';
+        this.winning_pieces = [];
+        
+        this.pieceDropSound = document.createElement('audio');
+        this.pieceDropSound.setAttribute('src', 'assets/slide_drop_sound.wav');
+        this.pieceDropSound.load();
+        
+        var ai_options = {
+            game_dimensions : this.dimensions,
+            difficulty : 'easy'
+        };
+        ai.init(ai_options);
     },
 
     reset: function() {
-        for(var i=0; i<this.dimensions.rows*this.dimensions.cols; i++) {
-            this.board[i] = '';
-        }
         this.winning = '';
         this.toggle_turn();
         this.last_play = undefined;
+        for(var i=0; i<this.dimensions.rows*this.dimensions.cols; i++) {
+            this.board[i] = '';
+        }
     },
 
     toggle_turn: function() {
@@ -23,6 +34,16 @@ var game = {
             this.turn = 'red';
         else
             this.turn = 'black';
+        
+        
+        if (board.player_two == 'Computer' && this.turn == 'red') {
+            board.set_disabled(true);
+            window.setTimeout(function(){
+                board.set_disabled(false);
+                var move_loc = ai.play();
+                $($("ul.board li")[move_loc]).click();                
+            }, 1200);
+        }
     },
 
     check: function(xd, yd) {
@@ -40,6 +61,7 @@ var game = {
         while (!done) {
             // Does the check meet the requirements and is it in bounds
             if (this.board[current] == check) {
+                this.winning_pieces[consecutive] = current;
                 consecutive += 1;
                 if (consecutive == 4)
                     return true;
@@ -113,6 +135,8 @@ var game = {
         /// Plays on the given column by placing the item to the very 
         /// bottom on the stack on the board (last empty row in column)
 
+        this.pieceDropSound.play();
+        
         if (this.winning != '')
             return false;
 
